@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eligible Students</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #fef6e4;
+      color: #333;
+    }
+
+    nav {
+      background: linear-gradient(to right, #244d93, #ff9800);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #244d93;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filters label {
+      font-weight: 500;
+    }
+
+    .filters input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.6rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: #244d93;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e7f8ec;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>TPO Dashboard</h1>
+    <div>
+      <a href="register.html">Registered</a>
+      <a href="eligible.html">Eligible</a>
+      <a href="skill-overview.html">Skills</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Eligible Students</h2>
+
+    <div class="filters">
+      <label><input type="checkbox" id="cgpaFilter"> CGPA > 7.5</label>
+      <label><input type="checkbox" id="hscFilter"> 12th > 85%</label>
+      <label><input type="checkbox" id="backlogFilter"> No Backlogs</label>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Branch</th>
+          <th>CGPA</th>
+          <th>12th %</th>
+          <th>Backlogs</th>
+        </tr>
+      </thead>
+      <tbody id="eligibleTable">
+        <!-- Data rows will be generated dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const students = [
+      { name: "Akash Mehta", branch: "CSE", cgpa: 8.2, hsc: 89, backlog: 0 },
+      { name: "Shruti Sharma", branch: "ECE", cgpa: 7.2, hsc: 84, backlog: 0 },
+      { name: "Rohan Patel", branch: "IT", cgpa: 7.9, hsc: 88, backlog: 0 },
+      { name: "Priya Deshmukh", branch: "MECH", cgpa: 8.5, hsc: 91, backlog: 1 },
+      { name: "Neha Joshi", branch: "CSE", cgpa: 7.4, hsc: 79, backlog: 0 },
+      { name: "Sameer Khan", branch: "EEE", cgpa: 8.1, hsc: 86, backlog: 0 },
+      { name: "Ananya Gupta", branch: "IT", cgpa: 8.6, hsc: 93, backlog: 0 },
+      { name: "Harsh Yadav", branch: "CIVIL", cgpa: 7.6, hsc: 85, backlog: 1 },
+      { name: "Vikram Bhatt", branch: "ECE", cgpa: 7.3, hsc: 82, backlog: 0 },
+      { name: "Divya Bansal", branch: "CSE", cgpa: 8.7, hsc: 95, backlog: 0 }
+    ];
+
+    const cgpaCheck = document.getElementById("cgpaFilter");
+    const hscCheck = document.getElementById("hscFilter");
+    const backlogCheck = document.getElementById("backlogFilter");
+    const table = document.getElementById("eligibleTable");
+
+    function renderTable() {
+      table.innerHTML = "";
+      const filtered = students.filter(s => {
+        return (!cgpaCheck.checked || s.cgpa > 7.5) &&
+               (!hscCheck.checked || s.hsc > 85) &&
+               (!backlogCheck.checked || s.backlog === 0);
+      });
+
+      filtered.forEach(s => {
+        const row = `<tr>
+          <td>${s.name}</td>
+          <td>${s.branch}</td>
+          <td>${s.cgpa}</td>
+          <td>${s.hsc}</td>
+          <td>${s.backlog}</td>
+        </tr>`;
+        table.innerHTML += row;
+      });
+    }
+
+    cgpaCheck.addEventListener("change", renderTable);
+    hscCheck.addEventListener("change", renderTable);
+    backlogCheck.addEventListener("change", renderTable);
+
+    renderTable(); // Initial render
+  </script>
+</body>
+</html>

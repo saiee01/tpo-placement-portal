@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students Skills</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #fef6e4;
+      color: #333;
+    }
+
+    nav {
+      background: linear-gradient(to right, #244d93, #ff9800);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #244d93;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.7rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: #244d93;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e7f8ec;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #ff9800;
+      color: white;
+      padding: 4px 8px;
+      margin: 2px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>TPO Dashboard</h1>
+    <div>
+      <a href="registered.html">Registered</a>
+      <a href="eligible.html">Eligible</a>
+      <a href="skills.html">Skills</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Students' Skills</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Branch</th>
+          <th>Skills</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Akash Mehta</td><td>CSE</td><td><span class="tag">Python</span><span class="tag">Java</span><span class="tag">SQL</span></td>
+        </tr>
+        <tr>
+          <td>Shruti Sharma</td><td>ECE</td><td><span class="tag">Verilog</span><span class="tag">Embedded C</span></td>
+        </tr>
+        <tr>
+          <td>Rohan Patel</td><td>IT</td><td><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></td>
+        </tr>
+        <tr>
+          <td>Priya Deshmukh</td><td>MECH</td><td><span class="tag">AutoCAD</span><span class="tag">ANSYS</span></td>
+        </tr>
+        <tr>
+          <td>Neha Joshi</td><td>CSE</td><td><span class="tag">C++</span><span class="tag">Data Structures</span></td>
+        </tr>
+        <tr>
+          <td>Sameer Khan</td><td>EEE</td><td><span class="tag">Matlab</span><span class="tag">Power Systems</span></td>
+        </tr>
+        <tr>
+          <td>Ananya Gupta</td><td>IT</td><td><span class="tag">JavaScript</span><span class="tag">Flask</span></td>
+        </tr>
+        <tr>
+          <td>Harsh Yadav</td><td>CIVIL</td><td><span class="tag">STAAD Pro</span><span class="tag">SketchUp</span></td>
+        </tr>
+        <tr>
+          <td>Ishita Rao</td><td>CSE</td><td><span class="tag">Machine Learning</span><span class="tag">TensorFlow</span></td>
+        </tr>
+        <tr>
+          <td>Vikram Bhatt</td><td>ECE</td><td><span class="tag">IoT</span><span class="tag">PCB Design</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

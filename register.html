@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registered Students</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fef6e4;
+      color: #333;
+    }
+
+    nav {
+      background: linear-gradient(to right, #244d93, #ff9800);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #244d93;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 1rem 0;
+      border: 2px solid #ff9800;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #244d93;
+      color: white;
+      padding: 0.7rem;
+    }
+
+    td {
+      padding: 0.6rem;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e7f8ec;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>TPO Dashboard</h1>
+    <div>
+      <a href="registered.html">Registered</a>
+      <a href="eligible.html">Eligible</a>
+      <a href="skills.html">Skills</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Registered Students</h2>
+    <input type="text" id="searchInput" onkeyup="searchName()" placeholder="Search student by name...">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Branch</th>
+        </tr>
+      </thead>
+      <tbody id="studentTable">
+        <tr><td>Akash Mehta</td><td>CSE</td></tr>
+        <tr><td>Shruti Sharma</td><td>ECE</td></tr>
+        <tr><td>Rohan Patel</td><td>IT</td></tr>
+        <tr><td>Priya Deshmukh</td><td>MECH</td></tr>
+        <tr><td>Neha Joshi</td><td>CSE</td></tr>
+        <tr><td>Sameer Khan</td><td>EEE</td></tr>
+        <tr><td>Ananya Gupta</td><td>IT</td></tr>
+        <tr><td>Harsh Yadav</td><td>CIVIL</td></tr>
+        <tr><td>Ishita Rao</td><td>CSE</td></tr>
+        <tr><td>Vikram Bhatt</td><td>ECE</td></tr>
+        <tr><td>Reema Kulkarni</td><td>MECH</td></tr>
+        <tr><td>Manoj Nair</td><td>EEE</td></tr>
+        <tr><td>Aarti Jain</td><td>IT</td></tr>
+        <tr><td>Kunal Verma</td><td>CIVIL</td></tr>
+        <tr><td>Divya Bansal</td><td>CSE</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function searchName() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.getElementById("studentTable").getElementsByTagName("tr");
+      for (let row of rows) {
+        const name = row.getElementsByTagName("td")[0].textContent.toLowerCase();
+        row.style.display = name.includes(input) ? "" : "none";
+      }
+    }
+  </script>
+</body>
+</html>

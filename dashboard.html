@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Placement Schedule - TPO Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fdf6e3, #e1f6ef, #d4f0f5);
+      margin: 0;
+      padding: 20px;
+      color: #004d40;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #003c3c;
+      margin-bottom: 1rem;
+    }
+
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .countdown {
+      font-size: 20px;
+      background: linear-gradient(to right, #4db6ac, #00796b);
+      padding: 12px 24px;
+      border-radius: 12px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      background: #00695c;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f3fbfb;
+    }
+
+    tr:hover {
+      background-color: #e0f7fa;
+      cursor: pointer;
+    }
+
+    .calendar-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .calendar-card {
+      background: linear-gradient(135deg, #26c6da, #0097a7);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .calendar-card:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #00acc1, #00796b);
+    }
+
+    .calendar-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .calendar-card p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📅 Placement Schedule</h1>
+
+  <div class="countdown-container">
+    <div class="countdown">
+      ⏳ Next Drive: <span id="countdown"></span>
+    </div>
+  </div>
+
+  <h2>📋 Upcoming Placement Drives</h2>
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Date</th>
+        <th>CTC</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>TCS</td><td>Software Engineer</td><td>2025-07-28</td><td>7 LPA</td><td>PAN India</td></tr>
+      <tr><td>Infosys</td><td>Analyst</td><td>2025-08-01</td><td>5 LPA</td><td>Bangalore</td></tr>
+      <tr><td>Amazon</td><td>SDE-1</td><td>2025-08-10</td><td>25 LPA</td><td>Hyderabad</td></tr>
+      <tr><td>Wipro</td><td>Project Engineer</td><td>2025-08-12</td><td>3.6 LPA</td><td>Pune</td></tr>
+      <tr><td>Google</td><td>AI Intern</td><td>2025-08-25</td><td>Intern</td><td>Remote</td></tr>
+      <tr><td>Accenture</td><td>Tech Associate</td><td>2025-09-03</td><td>4.5 LPA</td><td>Noida</td></tr>
+      <tr><td>Microsoft</td><td>Cloud Engineer</td><td>2025-09-10</td><td>18 LPA</td><td>Bangalore</td></tr>
+      <tr><td>Deloitte</td><td>Business Analyst</td><td>2025-09-15</td><td>6 LPA</td><td>Mumbai</td></tr>
+    </tbody>
+  </table>
+
+  <h2>🗓 Company Schedule Calendar View</h2>
+  <div class="calendar-view">
+    <div class="calendar-card"><h3>TCS</h3><p><strong>Date:</strong> July 28, 2025</p><p><strong>CTC:</strong> 7 LPA</p></div>
+    <div class="calendar-card"><h3>Infosys</h3><p><strong>Date:</strong> August 1, 2025</p><p><strong>CTC:</strong> 5 LPA</p></div>
+    <div class="calendar-card"><h3>Amazon</h3><p><strong>Date:</strong> August 10, 2025</p><p><strong>CTC:</strong> 25 LPA</p></div>
+    <div class="calendar-card"><h3>Wipro</h3><p><strong>Date:</strong> August 12, 2025</p><p><strong>CTC:</strong> 3.6 LPA</p></div>
+    <div class="calendar-card"><h3>Google</h3><p><strong>Date:</strong> August 25, 2025</p><p><strong>CTC:</strong> Internship</p></div>
+    <div class="calendar-card"><h3>Accenture</h3><p><strong>Date:</strong> September 3, 2025</p><p><strong>CTC:</strong> 4.5 LPA</p></div>
+    <div class="calendar-card"><h3>Microsoft</h3><p><strong>Date:</strong> September 10, 2025</p><p><strong>CTC:</strong> 18 LPA</p></div>
+    <div class="calendar-card"><h3>Deloitte</h3><p><strong>Date:</strong> September 15, 2025</p><p><strong>CTC:</strong> 6 LPA</p></div>
+  </div>
+
+  <script>
+    const nextDriveDate = new Date("2025-07-28T09:00:00").getTime();
+
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = nextDriveDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").textContent = "Drive Started!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+
+</body>
+</html>

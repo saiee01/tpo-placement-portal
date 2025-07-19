@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | TPO Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #fef6e4, #e7f8ec, #e6fbfc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dark-mode {
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: white;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .toggle-buttons button {
+      padding: 0.7rem 1.5rem;
+      margin: 0 0.5rem;
+      border: none;
+      border-radius: 2rem;
+      background: #244d93;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .toggle-buttons button.active {
+      background: #ff9800;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.5);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .login-box {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .login-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: #244d93;
+    }
+
+    body.dark-mode .login-box h2 {
+      color: #ffdd57;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 0.6rem 0;
+      border: none;
+      border-radius: 0.6rem;
+      background: #dae1d8;
+      font-size: 1rem;
+    }
+
+    body.dark-mode .login-box input {
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      background: #dcf0d4dc;
+    }
+
+    body.dark-mode .login-box input:focus {
+      background: #3d3d3d;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 0.6rem;
+      background: linear-gradient(135deg, #ff9800, #244d93);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .login-form {
+      display: none;
+    }
+
+    .login-form.active {
+      display: block;
+    }
+
+    /* Toggle Switch for Dark Mode */
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .dark-toggle input {
+      display: none;
+    }
+
+    .dark-toggle label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .dark-toggle .slider {
+      width: 40px;
+      height: 20px;
+      background-color: #ccc;
+      border-radius: 50px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+  
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <!-- Dark Mode Toggle -->
+    <div class="dark-toggle">
+      
+    </div>
+
+    <!-- Role Toggle -->
+    <div class="toggle-buttons">
+      <button id="studentBtn" class="active" onclick="showForm('student')">Student</button>
+      <button id="tpoBtn" onclick="showForm('tpo')">TPO</button>
+    </div>
+
+    <!-- Student Login Form -->
+    <div id="studentForm" class="login-form active">
+      <div class="login-box">
+        <h2>Student Login</h2>
+        <form onsubmit="login(event, 'student')">
+          <input type="text" placeholder="Username" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TPO Login Form -->
+    <div id="tpoForm" class="login-form">
+      <div class="login-box">
+        <h2>TPO Login</h2>
+        <form onsubmit="login(event, 'tpo')">
+          <input type="text" placeholder="Username" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Switch between Student and TPO Forms
+    function showForm(type) {
+      document.getElementById('studentForm').classList.remove('active');
+      document.getElementById('tpoForm').classList.remove('active');
+      document.getElementById('studentBtn').classList.remove('active');
+      document.getElementById('tpoBtn').classList.remove('active');
+
+      if (type === 'student') {
+        document.getElementById('studentForm').classList.add('active');
+        document.getElementById('studentBtn').classList.add('active');
+      } else {
+        document.getElementById('tpoForm').classList.add('active');
+        document.getElementById('tpoBtn').classList.add('active');
+      }
+    }
+
+    // Simulate Login Redirection
+    function login(event, role) {
+      event.preventDefault();
+      if (role === 'tpo') {
+        window.location.href = 'tpodash.html';
+      } else {
+        window.location.href = 'stddash.html';
+      }
+    }
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

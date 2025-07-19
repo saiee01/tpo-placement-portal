@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Tagging</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fdf6e3, #e1f6ef, #d4f0f5); /* Updated Mint Blue Glow */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInBody 1s ease-in;
+  }
+
+  @keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .container {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.67);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 90%;
+    max-width: 600px;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: fadeInCard 1s ease-in-out;
+  }
+
+  @keyframes fadeInCard {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #171313;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  label {
+    font-weight: 600;
+    color: #110e0e;
+    font-size: 15px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: none;
+    font-size: 15px;
+    resize: vertical;
+    background: rgba(255, 255, 255, 0.75);
+    color: #333;
+    transition: box-shadow 0.3s ease;
+  }
+
+  textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #52cbe7; /* Cyan border */
+  }
+
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #64dfdf, #80ffdb); /* Light teal gradient */
+    color: #1b1b1b;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(129, 184, 184, 0.4);
+  }
+
+  button:hover {
+    background: linear-gradient(135deg, #38b6ff, #75f3c6);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 192, 222, 0.6);
+  }
+
+  .result {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: #2c3e50;
+  }
+
+  .tag {
+    display: inline-block;
+    background-color: #9fe5d7; /* Emerald green */
+    color: white;
+    padding: 7px 14px;
+    border-radius: 20px;
+    margin: 6px 8px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: pop 0.3s ease-in-out;
+  }
+
+  @keyframes pop {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <h2>🛠️ Skill Tagging</h2>
+    <form id="skillForm">
+      <label for="resumeText">Paste Your Resume or Bio:</label>
+      <textarea id="resumeText" placeholder="E.g., I have experience in Python, React, Machine Learning, and Database systems..." required></textarea>
+      <button type="submit">Extract Skills</button>
+    </form>
+
+    <div class="result" id="skillTags" style="display: none;">
+      <h3>Tagged Skills:</h3>
+      <div id="tagsContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("skillForm");
+    const skillTags = document.getElementById("skillTags");
+    const tagsContainer = document.getElementById("tagsContainer");
+
+    const predefinedSkills = [
+      "Python", "Java", "C++", "HTML", "CSS", "JavaScript", "React",
+      "Node.js", "MongoDB", "SQL", "Machine Learning", "AI", "Data Science",
+      "Git", "Firebase", "Flutter", "AWS", "Linux", "DevOps", "TensorFlow",
+      "Communication", "Leadership", "Teamwork", "Problem Solving", "Time Management"
+    ];
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const text = document.getElementById("resumeText").value.toLowerCase();
+      const foundSkills = [];
+
+      predefinedSkills.forEach(skill => {
+        if (text.includes(skill.toLowerCase())) {
+          foundSkills.push(skill);
+        }
+      });
+
+      tagsContainer.innerHTML = "";
+      if (foundSkills.length > 0) {
+        foundSkills.forEach(skill => {
+          const tag = document.createElement("span");
+          tag.className = "tag";
+          tag.textContent = skill;
+          tagsContainer.appendChild(tag);
+        });
+      } else {
+        tagsContainer.innerHTML = "<p>No skills matched.</p>";
+      }
+
+      skillTags.style.display = "block";
+    });
+  </script>
+</body>
+</html>
+
+
+
